@@ -6,11 +6,153 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] ...
 
 The following advanced user stories are optional:
 
-- [ ] ...
+- [x] Import starting database
+
+- [x] Set up starting
+
+---
+
+- [x] Staff CMS for Users
+  - [x] index.php
+    - [x] Displays a list of all users in the database.
+    - [x] There is a link labeled "Add a User" at the top of the page.
+    - [x] Each user row has two links labeled "Show" and "Edit"
+    - [x] On the page is a link labeled "Back to Menu" which links to the main menu.
+  - [x] show.php
+    - [x] Displays the user's full name, username, and email address.
+    - [x] On the page is a link labeled "Edit" which links to the appropriate page.
+    - [x] On the page is a link labeled "Back to List" which links to the list of users.
+  - [x] new.php
+    - [x] Displays a form for adding a new user.
+    - [x] The form includes text inputs for first name, last name, username, and email address.
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, the form will display again with current values filled in and errors listed.
+    - [x] If validations pass, a new user will be added to the table and redirect to the user's information page.
+    - [x] On the page is a link labeled "Back to List" which links to the list of users.
+  - [x] edit.php
+    - [x] Displays a form for editing an existing user.
+    - [x] The form includes inputs for first name, last name, username, and email address.
+    - [x] The form is pre-populated with the user's current values.
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, the form will display again with current values filled in and errors listed.
+    - [x] If validations pass, it will update the user's data in the table and redirect to the user's information page.
+    - [x] On the page is a link labeled "Cancel" which links to the user's information page.
+
+---
+- [x] Staff CMS for Salespeople
+  - [x] index.php
+    - [x] Displays a list of all salespeople in the database.
+    - [x] There is a link labeled "Add a Salesperson" at the top of the page.
+    - [x] Each user row has two links labeled "Show" and "Edit"
+    - [x] On the page is a link labeled "Back to Menu" which links to the main menu.
+  - [x] show.php
+    - [x] Displays the salesperson's full name, phone, and email address.
+    - [x] On the page is a link labeled "Edit" which links to the appropriate page.
+    - [x] On the page is a link labeled "Back to List" which links to the list of salespeople.
+  - [x] new.php
+    - [x] Displays a form for adding a new salesperson.
+    - [x] The form includes text inputs for first name, last name, phone, and email address.
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, the form will display again with current values filled in and errors listed.
+    - [x] If validations pass, a new salesperson will be added to the table and redirect to the salesperson's information page.
+    - [x] On the page is a link labeled "Back to List" which links to the list of salespeople.
+  - [x] edit.php
+    - [x] Displays a form for editing an existing salesperson.
+    - [x] The form includes inputs for first name, last name, phone, and email address.
+    - [x] The form is pre-populated with the salesperson's current values.
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, the form will display again with current values filled in and errors listed.
+    - [x] If validations pass, it will update the salesperson's data in the table and redirect to the user's information page.
+    - [x] On the page is a link labeled "Cancel" which links to the salesperson's information page.
+
+---
+- [ ] Staff CMS for State
+  - [ ] index.php
+    - [ ] Displays a list of all states in the database.
+    - [ ] There is a link labeled "Add a State" at the top of the page.
+    - [ ] Each user row has two links labeled "Show" and "Edit"
+    - [ ] On the page is a link labeled "Back to Menu" which links to the main menu.
+  - [ ] show.php
+    - [ ] Displays a state's name, abbreviation code, and a list of the names of its territories. The territories list includes the territory name and is sorted by position.
+    - [ ] Each territory name is a link to a page to view more information about the territory.
+    - [ ] On the page is a link labeled "Edit" which links to the appropriate page.
+    - [ ] On the page is a link labeled "Back to List" which links to the list of states.
+    - [ ] Below the territory list is a link labeled "Add a Territory" which is a link to the form for adding a new territory.
+  - [ ] new.php
+    - [ ] Displays a form for adding a new state.
+    - [ ] The form includes text inputs for name and code
+    - [ ] Submitting the form will validate the data. (See validation details below.)
+    - [ ] If validations fail, the form will display again with current values filled in and errors listed.
+    - [ ] If validations pass, a new state will be added to the table and redirect to the salesperson's information page.
+    - [ ] On the page is a link labeled "Back to List" which links to the list of states.
+  - [ ] edit.php
+    - [ ] Displays a form for editing an existing state.
+    - [ ] The form includes inputs for code and name.
+    - [ ] The form is pre-populated with the state's current values.
+    - [ ] Submitting the form will validate the data. (See validation details below.)
+    - [ ] If validations fail, the form will display again with current values filled in and errors listed.
+    - [ ] If validations pass, it will update the state's data in the table and redirect to the user's information page.
+    - [ ] On the page is a link labeled "Cancel" which links to the state's information page.
+
+---
+- [ ] Staff CMS for Territories:
+  - [ ] index.php
+    - [ ] Redirects all requests to the main menu.
+  - [ ] show.php
+    - [ ] Displays a territory's name, state_id, position.
+    - [ ] On the page is a link labeled "Edit" which links to the appropriate page.
+    - [ ] On the page is a link labeled "Back to State Details" which links to the state's information page.
+  -[ ] new.php
+    - [ ] Displays a form for adding a new territory to this state.
+    - [ ] The form includes text inputs for name and position.
+    - [ ] It does not have a state or state_id input. (The state ID should be present in form action URL and not in a form value.)
+    - [ ] Submitting the form will validate the data. (See validation details below.)
+    - [ ] If validations fail, it will display the form again with errors listed.
+    - [ ] If validations pass, it will add a territory to the table and redirect to the territory's information page. Important note: it should automatically assign the new territory to the current state.
+    - [ ] On the page is a link labeled "Back to State Details" which links to the state's information page.
+  - [ ] edit.php
+    - [ ] Displays a form for editing an existing territory.
+    - [ ] The form includes inputs for name and position.
+    - [ ] The form is pre-populated with the territory's current values.
+    - [ ] It does not have an input for changing the territory's state assignment.
+    - [ ] Submitting the form will validate the data. (See validation details below.)
+    - [ ] If validations fail, it will display the form again with errors listed.
+    - [ ] If validations pass, it will update the territory's data in the table and redirect to the territory's information page.
+    - [ ] On the page is a link labeled "Cancel" which links to the territory's information page.
+
+---
+
+- [ ] Validations
+  - [ ] Validate that no values are left blank.
+  - [ ] Validate that all string values are less than 255 characters long (because that is the maximum size for our SQL columns).
+  - [ ] Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and \_.
+  - [ ] Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-.
+  - [ ] Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @.\_-.
+  - [ ] Add at least 5 other validations of your choosing. Consider what would be useful attributes to validate. Graders will be interested in the utility of the validation as much as the code execution. Add a code comment above each validation that says "My custom validation" (to make it easy to locate during grading).
+
+---
+- [ ] Sanitization
+  - [ ] All input and dynamic output should be sanitized.
+  - [ ] Be sure to sanitize dynamic data when used for:
+    - URLs
+    - HTML
+    - SQL
+
+---
+
+- [ ] Penetration Testing
+  - [ ] Verify that all form text inputs are not vulnerable to SQLI attacks.
+  - [ ] Verify that all URL query strings are not vulnerable to SQLI attacks.
+  - [ ] Verify that all form text inputs are not vulnerable to XSS attacks.
+  - [ ] Verify that all URL query strings are not vulnerable to XSS attacks.
+  - [ ] Make a list of any other bugs or security vulnerabilities you are able to trigger by putting well-crafted data into a form value, in a query string, or in the database data.
+
+The following **optional** features are implemented:
+
+The following **additional** features are implemented:
 
 ## Video Walkthrough
 

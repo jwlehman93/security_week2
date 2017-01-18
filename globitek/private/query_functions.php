@@ -221,8 +221,29 @@
   }
 
   function validate_salesperson($salesperson, $errors=array()) {
-    // TODO add validations
+    if (is_blank($salesperson['first_name'])) {
+      $errors[] = "First name cannot be blank.";
+    } elseif (!has_length($salesperson['first_name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "First name must be between 2 and 255 characters.";
+    }
 
+    if (is_blank($salesperson['last_name'])) {
+      $errors[] = "Last name cannot be blank.";
+    } elseif (!has_length($salesperson['last_name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Last name must be between 2 and 255 characters.";
+    }
+
+    if (is_blank($salesperson['email'])) {
+      $errors[] = "Email cannot be blank.";
+    } elseif (!has_valid_email_format($salesperson['email'])) {
+      $errors[] = "Email must be a valid format.";
+    }
+
+    if (is_blank($salesperson['phone'])) {
+      $errors[] = "Phone cannot be blank.";
+    } elseif (!has_length($salesperson['phone'], array('exact' => 10))) {
+      $errors[] = "Phone must be exactly 10 digits.";
+    }
     return $errors;
   }
 
@@ -236,8 +257,14 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
-    // For INSERT statments, $result is just true/false
+    $sql = "INSERT INTO salespeople"; 
+    $sql .= "(first_name, last_name, phone, email) ";
+    $sql .= "VALUES (";
+    $sql .= "'{$salesperson['first_name']}',";
+    $sql .= "'{$salesperson['last_name']}',";
+    $sql .= "'{$salesperson['phone']}',";
+    $sql .= "'{$salesperson['email']}'";
+    $sql .= ");";
     $result = db_query($db, $sql);
     if($result) {
       return true;
@@ -260,7 +287,14 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "UPDATE salespeople SET ";
+    $sql .= "first_name='" . $salesperson['first_name'] . "', ";
+    $sql .= "last_name='" . $salesperson['last_name'] . "', ";
+    $sql .= "email='" . $salesperson['email'] . "', ";
+    $sql .= "phone='" . $salesperson['phone'] . "' ";
+    $sql .= "WHERE id='" . $salesperson['id'] . "' ";
+    $sql .= "LIMIT 1;";
+
     // For update_salesperson statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {

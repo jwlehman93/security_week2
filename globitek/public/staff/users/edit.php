@@ -49,8 +49,9 @@ if(is_post_request()) {
     <input type="text" name="email" value="<?php echo $user['email']; ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Update"  />
-  </form>
+  </form><br />
 
+  <a href="show.php?id=<?php echo $salesperson['id']?>">Cancel</a><br />
 </div>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>
