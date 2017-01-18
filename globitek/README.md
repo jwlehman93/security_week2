@@ -69,50 +69,50 @@ The following advanced user stories are optional:
     - [x] On the page is a link labeled "Cancel" which links to the salesperson's information page.
 
 ---
-- [ ] Staff CMS for State
-  - [ ] index.php
-    - [ ] Displays a list of all states in the database.
-    - [ ] There is a link labeled "Add a State" at the top of the page.
-    - [ ] Each user row has two links labeled "Show" and "Edit"
-    - [ ] On the page is a link labeled "Back to Menu" which links to the main menu.
-  - [ ] show.php
-    - [ ] Displays a state's name, abbreviation code, and a list of the names of its territories. The territories list includes the territory name and is sorted by position.
-    - [ ] Each territory name is a link to a page to view more information about the territory.
-    - [ ] On the page is a link labeled "Edit" which links to the appropriate page.
-    - [ ] On the page is a link labeled "Back to List" which links to the list of states.
-    - [ ] Below the territory list is a link labeled "Add a Territory" which is a link to the form for adding a new territory.
-  - [ ] new.php
-    - [ ] Displays a form for adding a new state.
-    - [ ] The form includes text inputs for name and code
-    - [ ] Submitting the form will validate the data. (See validation details below.)
-    - [ ] If validations fail, the form will display again with current values filled in and errors listed.
-    - [ ] If validations pass, a new state will be added to the table and redirect to the salesperson's information page.
-    - [ ] On the page is a link labeled "Back to List" which links to the list of states.
-  - [ ] edit.php
-    - [ ] Displays a form for editing an existing state.
-    - [ ] The form includes inputs for code and name.
-    - [ ] The form is pre-populated with the state's current values.
-    - [ ] Submitting the form will validate the data. (See validation details below.)
-    - [ ] If validations fail, the form will display again with current values filled in and errors listed.
-    - [ ] If validations pass, it will update the state's data in the table and redirect to the user's information page.
-    - [ ] On the page is a link labeled "Cancel" which links to the state's information page.
+- [x] Staff CMS for State
+  - [x] index.php
+    - [x] Displays a list of all states in the database.
+    - [x] There is a link labeled "Add a State" at the top of the page.
+    - [x] Each user row has two links labeled "Show" and "Edit"
+    - [x] On the page is a link labeled "Back to Menu" which links to the main menu.
+  - [x] show.php
+    - [x] Displays a state's name, abbreviation code, and a list of the names of its territories. The territories list includes the territory name and is sorted by position.
+    - [x] Each territory name is a link to a page to view more information about the territory.
+    - [x] On the page is a link labeled "Edit" which links to the appropriate page.
+    - [x] On the page is a link labeled "Back to List" which links to the list of states.
+    - [x] Below the territory list is a link labeled "Add a Territory" which is a link to the form for adding a new territory.
+  - [x] new.php
+    - [x] Displays a form for adding a new state.
+    - [x] The form includes text inputs for name and code
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, the form will display again with current values filled in and errors listed.
+    - [x] If validations pass, a new state will be added to the table and redirect to the salesperson's information page.
+    - [x] On the page is a link labeled "Back to List" which links to the list of states.
+  - [x] edit.php
+    - [x] Displays a form for editing an existing state.
+    - [x] The form includes inputs for code and name.
+    - [x] The form is pre-populated with the state's current values.
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, the form will display again with current values filled in and errors listed.
+    - [x] If validations pass, it will update the state's data in the table and redirect to the user's information page.
+    - [x] On the page is a link labeled "Cancel" which links to the state's information page.
 
 ---
 - [ ] Staff CMS for Territories:
-  - [ ] index.php
-    - [ ] Redirects all requests to the main menu.
-  - [ ] show.php
-    - [ ] Displays a territory's name, state_id, position.
-    - [ ] On the page is a link labeled "Edit" which links to the appropriate page.
-    - [ ] On the page is a link labeled "Back to State Details" which links to the state's information page.
-  -[ ] new.php
-    - [ ] Displays a form for adding a new territory to this state.
-    - [ ] The form includes text inputs for name and position.
-    - [ ] It does not have a state or state_id input. (The state ID should be present in form action URL and not in a form value.)
-    - [ ] Submitting the form will validate the data. (See validation details below.)
-    - [ ] If validations fail, it will display the form again with errors listed.
-    - [ ] If validations pass, it will add a territory to the table and redirect to the territory's information page. Important note: it should automatically assign the new territory to the current state.
-    - [ ] On the page is a link labeled "Back to State Details" which links to the state's information page.
+  - [x] index.php
+    - [x] Redirects all requests to the main menu.
+  - [x] show.php
+    - [x] Displays a territory's name, state_id, position.
+    - [x] On the page is a link labeled "Edit" which links to the appropriate page.
+    - [x] On the page is a link labeled "Back to State Details" which links to the state's information page.
+  -[x] new.php
+    - [x] Displays a form for adding a new territory to this state.
+    - [x] The form includes text inputs for name and position.
+    - [x] It does not have a state or state_id input. (The state ID should be present in form action URL and not in a form value.)
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, it will display the form again with errors listed.
+    - [x] If validations pass, it will add a territory to the table and redirect to the territory's information page. Important note: it should automatically assign the new territory to the current state.
+    - [x] On the page is a link labeled "Back to State Details" which links to the state's information page.
   - [ ] edit.php
     - [ ] Displays a form for editing an existing territory.
     - [ ] The form includes inputs for name and position.

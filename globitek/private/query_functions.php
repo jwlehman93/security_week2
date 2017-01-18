@@ -45,8 +45,17 @@
   }
 
   function validate_state($state, $errors=array()) {
-    // TODO add validations
+    if (is_blank($state['code'])) {
+      $errors[] = "Code cannot be blank.";
+    } elseif (!has_length($state['code'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Code must be between 2 and 255 characters.";
+    }
 
+    if (is_blank($state['name'])) {
+      $errors[] = "Name cannot be blank.";
+    } elseif (!has_length($state['name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Name must be between 2 and 255 characters.";
+    }
     return $errors;
   }
 
@@ -60,7 +69,12 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "INSERT INTO states ";
+    $sql .= "(name, code) ";
+    $sql .= "VALUES (";
+    $sql .= "'{$state['name']}',";
+    $sql .= "'{$state['code']}'";
+    $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -84,7 +98,12 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "UPDATE states SET ";
+    $sql .= "name='{$state['name']}',";
+    $sql .= "code='{$state['code']}'";
+    $sql .= "WHERE id='{$state['id']}' ";
+    $sql .= "LIMIT 1;";
+
     // For update_state statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -131,8 +150,17 @@
   }
 
   function validate_territory($territory, $errors=array()) {
-    // TODO add validations
+    if (is_blank($territory['name'])) {
+      $errors[] = "Name cannot be blank.";
+    } elseif (!has_length($territory['name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Name must be between 2 and 255 characters.";
+    }
 
+    if (is_blank($territory['position'])) {
+      $errors[] = "Position cannot be blank.";
+    } elseif (!is_numeric($territory['position'])) {
+      $errors[] = "Position must be an integer.";
+    }
     return $errors;
   }
 
@@ -146,7 +174,15 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "INSERT INTO territories "; 
+    $sql .= "(name, position, state_id) ";
+    $sql .= "VALUES (";
+    $sql .= "'{$territory['name']}',";
+    $sql .= "'{$territory['position']}',";
+    $sql .= "'{$territory['state_id']}'";
+    $sql .= ");";
+
+      
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -257,7 +293,7 @@
       return $errors;
     }
 
-    $sql = "INSERT INTO salespeople"; 
+    $sql = "INSERT INTO salespeople";
     $sql .= "(first_name, last_name, phone, email) ";
     $sql .= "VALUES (";
     $sql .= "'{$salesperson['first_name']}',";

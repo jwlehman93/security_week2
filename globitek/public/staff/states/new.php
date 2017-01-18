@@ -3,13 +3,12 @@ require_once('../../../private/initialize.php');
 $errors = array();
 $state = array(
   'name' => '',
-  'code' => '',
-  'country_id' => ''
+  'code' => ''
 );
 
 if(is_post_request()) {
-  foreach($state as $value) {
-    if(isset($_POST[$value])) {$state[$values] = $_POST[$value];}
+  foreach($state as $key => $value) {
+    if(isset($_POST[$key])) {$state[$key] = $_POST[$key];}
   }
   $result = insert_state($state);
   if($result === true) {
@@ -37,8 +36,6 @@ if(is_post_request()) {
     <input type="text" name="name" value="<?php echo $state['name']; ?>" /><br />
     Code:<br />
     <input type="text" name="code" value="<?php echo $state['code']; ?>" /><br />
-    Country Id:<br />
-    <input type="text" name="country_id" value="<?php echo $state['country_id']; ?>" /><br />
     <br />
     <button type="submit">Submit</button>
   </form>
