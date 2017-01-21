@@ -1,6 +1,6 @@
 # Project 2 - Globitek Input/Output Sanitization
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -98,7 +98,7 @@ The following advanced user stories are optional:
     - [x] On the page is a link labeled "Cancel" which links to the state's information page.
 
 ---
-- [ ] Staff CMS for Territories:
+- [x] Staff CMS for Territories:
   - [x] index.php
     - [x] Redirects all requests to the main menu.
   - [x] show.php
@@ -114,29 +114,34 @@ The following advanced user stories are optional:
     - [x] If validations pass, it will add a territory to the table and redirect to the territory's information page. Important note: it should automatically assign the new territory to the current state.
     - [x] On the page is a link labeled "Back to State Details" which links to the state's information page.
   - [ ] edit.php
-    - [ ] Displays a form for editing an existing territory.
-    - [ ] The form includes inputs for name and position.
-    - [ ] The form is pre-populated with the territory's current values.
-    - [ ] It does not have an input for changing the territory's state assignment.
-    - [ ] Submitting the form will validate the data. (See validation details below.)
-    - [ ] If validations fail, it will display the form again with errors listed.
-    - [ ] If validations pass, it will update the territory's data in the table and redirect to the territory's information page.
-    - [ ] On the page is a link labeled "Cancel" which links to the territory's information page.
+    - [x] Displays a form for editing an existing territory.
+    - [x] The form includes inputs for name and position.
+    - [x] The form is pre-populated with the territory's current values.
+    - [x] It does not have an input for changing the territory's state assignment.
+    - [x] Submitting the form will validate the data. (See validation details below.)
+    - [x] If validations fail, it will display the form again with errors listed.
+    - [x] If validations pass, it will update the territory's data in the table and redirect to the territory's information page.
+    - [x] On the page is a link labeled "Cancel" which links to the territory's information page.
 
 ---
 
-- [ ] Validations
-  - [ ] Validate that no values are left blank.
-  - [ ] Validate that all string values are less than 255 characters long (because that is the maximum size for our SQL columns).
-  - [ ] Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and \_.
-  - [ ] Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-.
-  - [ ] Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @.\_-.
-  - [ ] Add at least 5 other validations of your choosing. Consider what would be useful attributes to validate. Graders will be interested in the utility of the validation as much as the code execution. Add a code comment above each validation that says "My custom validation" (to make it easy to locate during grading).
+- [x] Validations
+  - [x] Validate that no values are left blank.
+  - [x] Validate that all string values are less than 255 characters long (because that is the maximum size for our SQL columns).
+  - [x] Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and \_.
+  - [x] Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-.
+  - [x] Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @.\_-.
+  - [x] Add at least 5 other validations of your choosing. Consider what would be useful attributes to validate. Graders will be interested in the utility of the validation as much as the code execution. Add a code comment above each validation that says "My custom validation" (to make it easy to locate during grading).
+    1. Improve email validation to take into account if there is a period, where it is located, and if there are letters around it.
+    2. Validate that phone numbers have between 4 and 13 characters.
+    3. Validate US State Codes can only be two digits.
+    4. Validate State Codes must be alphabtical.
+    5. Validate territory position is not the same as another territory in the same state;
 
 ---
-- [ ] Sanitization
-  - [ ] All input and dynamic output should be sanitized.
-  - [ ] Be sure to sanitize dynamic data when used for:
+- [x] Sanitization
+  - [x] All input and dynamic output should be sanitized.
+  - [x] Be sure to sanitize dynamic data when used for:
     - URLs
     - HTML
     - SQL
@@ -144,7 +149,7 @@ The following advanced user stories are optional:
 ---
 
 - [ ] Penetration Testing
-  - [ ] Verify that all form text inputs are not vulnerable to SQLI attacks.
+  - [x] Verify that all form text inputs are not vulnerable to SQLI attacks.
   - [ ] Verify that all URL query strings are not vulnerable to SQLI attacks.
   - [ ] Verify that all form text inputs are not vulnerable to XSS attacks.
   - [ ] Verify that all URL query strings are not vulnerable to XSS attacks.
