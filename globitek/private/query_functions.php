@@ -410,13 +410,12 @@
   }
 
   function validate_user($user, $errors=array()) {
-    global $db;
-    $sql = "SELECT * FROM users WHERE username='" . $user['username'] . "';";
-    $user_result = db_query($db, $sql);
     if (is_blank($user['first_name'])) {
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($user['first_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "First name must be between 2 and 255 characters.";
+    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $user['first_name']) !== 1) {
+
     }
 
     if (is_blank($user['last_name'])) {
@@ -441,14 +440,12 @@
     } elseif(preg_match('/\A[A-za-z0-9_]+\Z/', $user['username']) !== 1) {
       $errors[] = 'Username must only contain letters, number, or the symbol _';
     }
-    if(!$user_result) {
-      echo db_error($db);
-      db_close($db);
+
+    if(!has_unique_username($user['username'], isset($user['id']) ? $user['id'] : NULL)) {
+      $errors[] = "Username must be unique.";
     }
-    elseif(db_num_rows($user_result) !== 0) {
-      $errors[] = "Username is already taken";
-    }
-    return $errors;
+
+        return $errors;
   }
 
   // Add a new user to the table
