@@ -285,13 +285,19 @@
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($salesperson['first_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "First name must be between 2 and 255 characters.";
+    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $user['first_name']) !== 1) {
+      $errors[] = "First name must only contain characters or the symbols -, . ', or a space.";
     }
+
 
     if (is_blank($salesperson['last_name'])) {
       $errors[] = "Last name cannot be blank.";
     } elseif (!has_length($salesperson['last_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "Last name must be between 2 and 255 characters.";
+    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $user['first_name']) !== 1) {
+      $errors[] = "Last name must only contain characters or the symbols -, . ', or a space.";
     }
+
 
     if (is_blank($salesperson['email'])) {
       $errors[] = "Email cannot be blank.";
@@ -415,14 +421,17 @@
     } elseif (!has_length($user['first_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "First name must be between 2 and 255 characters.";
     } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $user['first_name']) !== 1) {
-
+      $errors[] = "First name must only contain characters or the symbols -, . ', or a space.";
     }
 
     if (is_blank($user['last_name'])) {
       $errors[] = "Last name cannot be blank.";
     } elseif (!has_length($user['last_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "Last name must be between 2 and 255 characters.";
+    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $user['first_name']) !== 1) {
+      $errors[] = "Last name must only contain characters or the symbols -, . ', or a space.";
     }
+
 
     if (is_blank($user['email'])) {
       $errors[] = "Email cannot be blank.";

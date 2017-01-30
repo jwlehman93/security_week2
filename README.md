@@ -165,6 +165,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] Add additional `has\_unique\_username` function to `validation_functions.php`
+- [x] Add validation so that names can only container character, or the symbols period, comma, single quote, or a space
 
 ## Video Walkthrough
 
