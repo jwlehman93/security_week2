@@ -158,13 +158,13 @@ The following advanced user stories are optional:
     1. I improperly thought I could use html entities to prevent sql query. I found the
     mysqli_real_escape_string,  which actually helped cover up these vulnerabilities.
 The following **optional** features are implemented:
-[x] Display the name of the state instead of the `territories.state_id`
-[x] Validate uniqueness of username both whena user is created and when updated
+- [x] Display the name of the state instead of the `territories.state_id`
+- [x] Validate uniqueness of username both whena user is created and when updated
 
 
 The following **additional** features are implemented:
 
-[x] Add additional `has\_unique\_username` function to `validation_functions.php`
+- [x] Add additional `has\_unique\_username` function to `validation_functions.php`
 
 ## Video Walkthrough
 
