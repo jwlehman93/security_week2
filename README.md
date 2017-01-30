@@ -157,6 +157,8 @@ The following advanced user stories are optional:
   * Vulnerabilities
     1. I improperly thought I could use html entities to prevent sql query. I found the
     mysqli_real_escape_string,  which actually helped cover up these vulnerabilities.
+    2. I also did not properly escape my feature when I was attemting to check a unique username,
+    which allowed for a sql injection vulnerability
 The following **optional** features are implemented:
 - [x] Display the name of the state instead of the `territories.state_id`
 - [x] Validate uniqueness of username both whena user is created and when updated

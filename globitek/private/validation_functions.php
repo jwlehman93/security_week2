@@ -43,7 +43,7 @@ function has_valid_email_format($value) {
 
 function has_unique_username($username, $id=NULL) {
   global $db;
-  $sql = "SELECT * FROM users WHERE username='" . $username . "';";
+  $sql = "SELECT * FROM users WHERE username='" . mysqli_real_escape_string($db, h($username)) . "';";
   $user_result = db_query($db, $sql);
   if(!$user_result) {
     echo db_error($db);
