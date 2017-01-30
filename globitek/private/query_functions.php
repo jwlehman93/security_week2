@@ -81,8 +81,8 @@
     $sql = "INSERT INTO states ";
     $sql .= "(name, code) ";
     $sql .= "VALUES (";
-    $sql .= "'" . mysqli_real_escape_string(h($state['name'])) . "',";
-    $sql .= "'". h($state['code']) . "'";
+    $sql .= "'" . mysqli_real_escape_string($db, h($state['name'])) . "',";
+    $sql .= "'". mysqli_real_escape_string($db,h($state['code'])) . "'";
     $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
@@ -108,9 +108,9 @@
     }
 
     $sql = "UPDATE states SET ";
-    $sql .= "name='" . h($state['name']) . "',";
-    $sql .= "code='" . h($state['code']) . "'";
-    $sql .= "WHERE id='" . h($state['id']) . "' ";
+    $sql .= "name='" . mysqli_real_escape_string($db, h($state['name'])) . "',";
+    $sql .= "code='" . mysqli_real_escape_string($db,h($state['code'])) . "'";
+    $sql .= "WHERE id='" . mysqli_real_escape_string($db,h($state['id'])) . "' ";
     $sql .= "LIMIT 1;";
 
     // For update_state statments, $result is just true/false
@@ -197,9 +197,9 @@
     $sql = "INSERT INTO territories "; 
     $sql .= "(name, position, state_id) ";
     $sql .= "VALUES (";
-    $sql .= "'" . h($territory['name']) . "',";
-    $sql .= "'" . h($territory['position']) . "',";
-    $sql .= "'" . h($territory['state_id']) . "'";
+    $sql .= "'" . mysqli_real_escape_string($db,h($territory['name'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db,h($territory['position'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db,h($territory['state_id'])) . "'";
     $sql .= ");";
 
       
@@ -227,9 +227,9 @@
     }
 
     $sql = "UPDATE territories SET ";
-    $sql .= "name='" . h($territory['name']) . "',";
-    $sql .= "position='" . h($territory['position']) . "'";
-    $sql .= "WHERE id='" . h($territory['id']) . "' ";
+    $sql .= "name='" . mysqli_real_escape_string($db,h($territory['name'])) . "',";
+    $sql .= "position='" . mysqli_real_escape_string($db,h($territory['position'])) . "'";
+    $sql .= "WHERE id='" . mysqli_real_escape_string($db,h($territory['id'])) . "' ";
     $sql .= "LIMIT 1;";
     // For update_territory statments, $result is just true/false
     $result = db_query($db, $sql);
@@ -326,10 +326,10 @@
     $sql = "INSERT INTO salespeople";
     $sql .= "(first_name, last_name, phone, email) ";
     $sql .= "VALUES (";
-    $sql .= "'" . h($salesperson['first_name']) . "',";
-    $sql .= "'" . h($salesperson['last_name']) . "',";
-    $sql .= "'" . h($salesperson['phone']) . "',";
-    $sql .= "'" . h($salesperson['email']) . "'";
+    $sql .= "'" . mysqli_real_escape_string($db,h($salesperson['first_name'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db,h($salesperson['last_name'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db,h($salesperson['phone'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db,h($salesperson['email'])) . "'";
     $sql .= ");";
     $result = db_query($db, $sql);
     if($result) {
@@ -354,11 +354,11 @@
     }
 
     $sql = "UPDATE salespeople SET ";
-    $sql .= "first_name='" . h($salesperson['first_name']) . "', ";
-    $sql .= "last_name='" . h($salesperson['last_name']) . "', ";
-    $sql .= "email='" . h($salesperson['email']) . "', ";
-    $sql .= "phone='" . h($salesperson['phone']) . "' ";
-    $sql .= "WHERE id='" . h($salesperson['id']) . "' ";
+    $sql .= "first_name='" . mysqli_real_escape_string($db,h($salesperson['first_name'])) . "', ";
+    $sql .= "last_name='" . mysqli_real_escape_string($db,h($salesperson['last_name'])) . "', ";
+    $sql .= "email='" . mysqli_real_escape_string($db,h($salesperson['email'])) . "', ";
+    $sql .= "phone='" . mysqli_real_escape_string($db,h($salesperson['phone'])) . "' ";
+    $sql .= "WHERE id='" . mysqli_real_escape_string($db,h($salesperson['id'])) . "' ";
     $sql .= "LIMIT 1;";
 
     // For update_salesperson statments, $result is just true/false
@@ -404,12 +404,15 @@
   // Find user using id
   function find_user_by_id($id=0) {
     global $db;
-    $sql = "SELECT * FROM users WHERE id='" . $id . "' LIMIT 1;";
+    $sql = "SELECT * FROM users WHERE id='" . mysqli_real_escape_string($db, h($id)) . "' LIMIT 1;";
     $users_result = db_query($db, $sql);
     return $users_result;
   }
 
   function validate_user($user, $errors=array()) {
+    global $db;
+    $sql = "SELECT * FROM users WHERE username='" . $user['username'] . "';";
+    $user_result = db_query($db, $sql);
     if (is_blank($user['first_name'])) {
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($user['first_name'], array('min' => 2, 'max' => 255))) {
@@ -438,6 +441,13 @@
     } elseif(preg_match('/\A[A-za-z0-9_]+\Z/', $user['username']) !== 1) {
       $errors[] = 'Username must only contain letters, number, or the symbol _';
     }
+    if(!$user_result) {
+      echo db_error($db);
+      db_close($db);
+    }
+    elseif(db_num_rows($user_result) !== 0) {
+      $errors[] = "Username is already taken";
+    }
     return $errors;
   }
 
@@ -452,15 +462,15 @@
     }
 
     $created_at = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO users ";
-    $sql .= "(first_name, last_name, email, username, created_at) ";
+    $sql = "INSERT INTO users "; $sql .= "(first_name, last_name, email, username, created_at) ";
     $sql .= "VALUES (";
-    $sql .= "'" . h($user['first_name']) . "',";
-    $sql .= "'" . h($user['last_name']) . "',";
-    $sql .= "'" . h($user['email']) . "',";
-    $sql .= "'" . h($user['username']) . "',";
-    $sql .= "'" . $created_at . "',";
+    $sql .= "'" . mysqli_real_escape_string($db, h($user['first_name'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db, h($user['last_name'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db, h($user['email'])) . "',";
+    $sql .= "'" . mysqli_real_escape_string($db, h($user['username'])) . "',";
+    $sql .= "'" . $created_at . "'";
     $sql .= ");";
+    echo $sql;
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -485,11 +495,11 @@
     }
 
     $sql = "UPDATE users SET ";
-    $sql .= "first_name='" . h($user['first_name']) . "', ";
-    $sql .= "last_name='" . h($user['last_name']) . "', ";
-    $sql .= "email='" . h($user['email']) . "', ";
-    $sql .= "username='" . h($user['username']) . "' ";
-    $sql .= "WHERE id='" . h($user['id']) . "' ";
+    $sql .= "first_name='" . mysqli_real_escape_string($db,h($user['first_name'])) . "', ";
+    $sql .= "last_name='" . mysqli_real_escape_string($db,h($user['last_name'])) . "', ";
+    $sql .= "email='" . mysqli_real_escape_string($db,h($user['email'])) . "', ";
+    $sql .= "username='" . mysqli_real_escape_string($db,h($user['username'])) . "' ";
+    $sql .= "WHERE id='" . mysqli_real_escape_string($db,h($user['id'])) . "' ";
     $sql .= "LIMIT 1;";
     // For update_user statments, $result is just true/false
     $result = db_query($db, $sql);

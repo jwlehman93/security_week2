@@ -148,14 +148,19 @@ The following advanced user stories are optional:
 
 ---
 
-- [ ] Penetration Testing
+- [x] Penetration Testing
   - [x] Verify that all form text inputs are not vulnerable to SQLI attacks.
-  - [ ] Verify that all URL query strings are not vulnerable to SQLI attacks.
-  - [ ] Verify that all form text inputs are not vulnerable to XSS attacks.
-  - [ ] Verify that all URL query strings are not vulnerable to XSS attacks.
-  - [ ] Make a list of any other bugs or security vulnerabilities you are able to trigger by putting well-crafted data into a form value, in a query string, or in the database data.
-
+  - [x] Verify that all URL query strings are not vulnerable to SQLI attacks.
+  - [x] Verify that all form text inputs are not vulnerable to XSS attacks.
+  - [x] Verify that all URL query strings are not vulnerable to XSS attacks.
+  - [x] Make a list of any other bugs or security vulnerabilities you are able to trigger by putting well-crafted data into a form value, in a query string, or in the database data.
+  * Vulnerabilities
+    1. I improperly thought I could use html entities to prevent sql query. I found the
+    mysqli_real_escape_string,  which actually helped cover up these vulnerabilities.
 The following **optional** features are implemented:
+[x] Display the name of the state instead of the `territories.state_id`
+[x] Validate uniqueness of username both whena user is created and when updated
+
 
 The following **additional** features are implemented:
 
