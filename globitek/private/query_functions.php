@@ -175,10 +175,8 @@
     } elseif (!is_numeric($territory['position'])) {
       $errors[] = "Position must be an integer.";
     } 
-    if(!$territory_result) {
-      echo db_error($db);
-      db_close($db);
-    } elseif(db_num_rows($territory_result) !== 0) {
+    // custom validation
+    if(!has_unique_position($territory, isset($territory['id']) ? $territory['id'] : NULL)) {
       $errors[] = "Another territory is already in that position";
     }
     return $errors;
@@ -285,7 +283,7 @@
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($salesperson['first_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "First name must be between 2 and 255 characters.";
-    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $user['first_name']) !== 1) {
+    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $salesperson['first_name']) !== 1) {
       $errors[] = "First name must only contain characters or the symbols -, . ', or a space.";
     }
 
@@ -294,7 +292,7 @@
       $errors[] = "Last name cannot be blank.";
     } elseif (!has_length($salesperson['last_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "Last name must be between 2 and 255 characters.";
-    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $user['first_name']) !== 1) {
+    } elseif(preg_match('/\A[A-Za-z\s\-,\.\']+\Z/', $salesperson['first_name']) !== 1) {
       $errors[] = "Last name must only contain characters or the symbols -, . ', or a space.";
     }
 

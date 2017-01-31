@@ -60,4 +60,24 @@ function has_unique_username($username, $id=NULL) {
 }
 
 
+function has_unique_position($territory, $id=NULL) {
+  global $db;
+  $sql = "SELECT * FROM territories ";
+  $sql .= "WHERE position='{$territory['position']}' ";
+  $sql .= "AND state_id='{$territory['state_id']}';";
+  $territory_result = db_query($db, $sql);
+  if(!$territory_result) {
+    echo db_error($db);
+    db_close($db);
+    exit;
+  } elseif(db_num_rows($territory_result) !== 0) {
+    if(!isset($id)) {
+      return false;
+    } elseif($id !== db_fetch_assoc($territory_result)['id']) {
+      return false;
+    }
+  }
+  return true;
+}
+
 ?>
